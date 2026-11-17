@@ -16,4 +16,5 @@
 
 set -ex
 rm -rf /go/src/agones.dev/agones/test/sdk/cpp/.build
+rm -rf /go/src/agones.dev/agones/test/sdk/cpp/.build-sanitizers
 rm -rf /go/src/agones.dev/agones/test/sdk/cpp/sdk

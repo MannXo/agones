@@ -168,6 +168,8 @@ run-sdk-conformance-test: ensure-build-sdk-image
 
 run-sdk-conformance-test-cpp:
 	$(MAKE) run-sdk-conformance-test SDK_FOLDER=cpp GRPC_PORT=9003 HTTP_PORT=9103
+	# run with AddressSanitizer and UndefinedBehaviorSanitizer
+	DOCKER_RUN_ARGS="$(DOCKER_RUN_ARGS) -e SANITIZERS=true" $(MAKE) run-sdk-conformance-test SDK_FOLDER=cpp GRPC_PORT=9003 HTTP_PORT=9103
 
 run-sdk-conformance-test-node:
 	# run with on-by-default (Beta) feature flags enabled. If running locally first run `SDK_FOLDER=node make test-sdk` to build dependencies.

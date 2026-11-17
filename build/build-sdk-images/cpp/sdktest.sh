@@ -15,4 +15,11 @@
 # limitations under the License.
 
 set -ex
-/go/src/agones.dev/agones/test/sdk/cpp/.build/.bin/cpp-simple
+if [[ "$SANITIZERS" == "true" ]]
+then
+    export ASAN_OPTIONS=halt_on_error=1:detect_leaks=0
+    export UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1
+    /go/src/agones.dev/agones/test/sdk/cpp/.build-sanitizers/.bin/cpp-simple
+else
+    /go/src/agones.dev/agones/test/sdk/cpp/.build/.bin/cpp-simple
+fi
